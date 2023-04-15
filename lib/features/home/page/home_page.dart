@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_articles/app/core/enums.dart';
-import 'package:user_articles/data/remote_data_sources/authors_remote_data_source.dart';
+import 'package:user_articles/app/injection_container.dart';
 import 'package:user_articles/domain/models/author_model.dart';
-import 'package:user_articles/domain/repositories/authors_repository.dart';
 import 'package:user_articles/features/articles/page/articles_page.dart';
 import 'package:user_articles/features/home/cubit/home_cubit.dart';
 
@@ -17,11 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: BlocProvider<HomeCubit>(
         create: (context) {
-          return HomeCubit(
-            authorsRepository: AuthorsRepository(
-              remoteDataSource: AuthorsMockedDataSource(),
-            ),
-          )..start();
+          return getIt()..start();
         },
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
@@ -48,7 +43,7 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     state.errorMessage ?? 'Unknown error',
                     style: TextStyle(
-                      color: Theme.of(context).errorColor,
+                      color: Theme.of(context).colorScheme.error,
                     ),
                   ),
                 );

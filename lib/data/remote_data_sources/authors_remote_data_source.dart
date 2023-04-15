@@ -1,18 +1,17 @@
-class AuthorsMockedDataSource {
-  Future<List<Map<String, dynamic>>?> getAuthors() async {
-    return [
-      {
-        'id': 1,
-        'picture': 'https://randomuser.me/api/portraits/men/57.jpg',
-        'first_name': 'Piotr',
-        'last_name': 'Obdarowicz',
-      },
-      {
-        'id': 2,
-        'picture': 'https://randomuser.me/api/portraits/men/58.jpg',
-        'first_name': 'Radosław',
-        'last_name': 'Gdański',
-      },
-    ];
-  }
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:retrofit/retrofit.dart';
+import 'package:user_articles/domain/models/author_model.dart';
+
+part 'authors_remote_data_source.g.dart';
+
+@injectable
+@RestApi()
+abstract class AuthorsRemoteRetroFitDataSource {
+  @factoryMethod
+  factory AuthorsRemoteRetroFitDataSource(Dio dio) = _AuthorsRemoteRetroFitDataSource;
+
+  @GET("/users")
+  Future<List<AuthorModel>> getAuthors();
 }
+
