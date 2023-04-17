@@ -65,7 +65,7 @@ class ArticlesPage extends StatelessWidget {
                         child: Text(
                           state.errorMessage ?? 'Unknown error',
                           style: TextStyle(
-                            color: Theme.of(context).errorColor,
+                            color: Theme.of(context).colorScheme.error,
                           ),
                         ),
                       );
