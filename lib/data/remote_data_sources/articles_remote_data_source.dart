@@ -9,9 +9,9 @@ part 'articles_remote_data_source.g.dart';
 @RestApi()
 abstract class ArticlesRemoteRetrofitDataSource {
   @factoryMethod
-  factory ArticlesRemoteRetrofitDataSource(Dio dio) = _ArticlesRemoteRetrofitDataSource;
+  factory ArticlesRemoteRetrofitDataSource(Dio dio) =
+      _ArticlesRemoteRetrofitDataSource;
 
   @GET("/articles")
   Future<List<ArticleModel>> getArticles();
 }
-

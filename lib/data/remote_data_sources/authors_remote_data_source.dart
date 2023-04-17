@@ -9,9 +9,9 @@ part 'authors_remote_data_source.g.dart';
 @RestApi()
 abstract class AuthorsRemoteRetroFitDataSource {
   @factoryMethod
-  factory AuthorsRemoteRetroFitDataSource(Dio dio) = _AuthorsRemoteRetroFitDataSource;
+  factory AuthorsRemoteRetroFitDataSource(Dio dio) =
+      _AuthorsRemoteRetroFitDataSource;
 
   @GET("/users")
   Future<List<AuthorModel>> getAuthors();
 }
-
